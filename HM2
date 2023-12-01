@@ -1,0 +1,78 @@
+using System;
+
+public class Customer
+{
+    
+    public string Name { get; set; }
+    public Address Address { get; set; }
+    
+    
+    public Customer(string name, Address address)
+    {
+        Name = name;
+        Address = address;
+    }
+}
+
+public class Address
+{
+    
+    public string Street { get; set; }
+    public string City { get; set; }
+    public string State { get; set; }
+    public string ZipCode { get; set; }
+}
+
+public class Cash
+{
+    
+    public float CashTendered { get; set; }
+}
+
+public class Order
+{
+    
+    public DateTime Date { get; set; }
+    public string Status { get; set; }
+
+   
+    public Order(DateTime date, string status)
+    {
+        Date = date;
+        Status = status;
+    }
+
+    
+    public int Calc()
+    {
+        
+        return 0;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        
+        Address customerAddress = new Address
+        {
+            Street = "123 Main St",
+            City = "Amman",
+            State = "Jordan",
+            ZipCode = "12345"
+        };
+
+        Customer customer = new Customer("John Doe", customerAddress);
+
+        Cash cash = new Cash
+        {
+            CashTendered = 100.0f
+        };
+
+        Order order = new Order(DateTime.Now, "Pending");
+        int result = order.Calc();
+
+        
+    }
+}
