@@ -1,0 +1,60 @@
+Student Name: maoua wraikat
+University ID: 202220753
+Q1:
+1) 
+SELECT 
+    c.customer_id,
+    c.name,
+    COUNT(o.order_id) AS total_orders
+FROM Customers c
+LEFT JOIN Orders o 
+    ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.name;
+
+2)
+SELECT customer_id, name
+FROM (
+    SELECT 
+        c.customer_id,
+        c.name,
+        COUNT(o.order_id) AS total_orders
+    FROM Customers c
+    LEFT JOIN Orders o 
+        ON c.customer_id = o.customer_id
+    GROUP BY c.customer_id, c.name
+) AS customer_orders
+WHERE total_orders > (
+    SELECT AVG(order_count)
+    FROM (
+        SELECT COUNT(*) AS order_count
+        FROM Orders
+        GROUP BY customer_id
+    ) AS avg_table
+);
+
+3)
+CREATE INDEX idx_customer_id 
+ON Orders(customer_id);
+
+4)
+START TRANSACTION;
+INSERT INTO Orders (order_id, customer_id, order_date, total_amount)
+VALUES (1, 101, '2026-04-05', 200.00);
+INSERT INTO Order_Items (item_id, order_id, product_name, quantity, price)
+VALUES (1, 1, 'Product A', 2, 50.00);
+INSERT INTO Order_Items (item_id, order_id, product_name, quantity, price)
+VALUES (2, 1, 'Product B', 1, 100.00);
+COMMIT;
+
+5)
+ACID properties ensure the reliability of database transactions by maintaining essential guarantees.
+Atomicity ensures that all operations within a transaction either succeed together or fail.
+Consistency guarantees that the database remains valid before and after a transaction adhering.
+Isolation ensures that concurrent transactions do not interfere with each other.
+Durability guarantees that once a transaction is committed its effects are permanently saved in the database.
+
+Q2:
+SELECT day, qty, SUM(qty) OVER (ORDER BY day) AS cumqty
+FROM demandTable
+ORDER BY day;
+
