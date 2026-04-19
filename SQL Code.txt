@@ -1,0 +1,28 @@
+CREATE TABLE [User] (
+    U_ID     INT PRIMARY KEY IDENTITY,
+    Uname    VARCHAR(100) NOT NULL,
+    Email    VARCHAR(150) UNIQUE NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Phone    VARCHAR(20)
+);
+
+CREATE TABLE Artwork (
+    A_ID     INT PRIMARY KEY IDENTITY,
+    Aname    VARCHAR(200) NOT NULL,
+    Category VARCHAR(100),
+    Price    DECIMAL(10,2) NOT NULL,
+    Img      VARCHAR(255)
+);
+
+CREATE TABLE Cart (
+    C_ID INT PRIMARY KEY IDENTITY,
+    U_ID INT REFERENCES [User](U_ID)
+);
+
+CREATE TABLE [Order] (
+    O_ID     INT PRIMARY KEY IDENTITY,
+    C_ID     INT REFERENCES Cart(C_ID),
+    A_ID     INT REFERENCES Artwork(A_ID),
+    Quantity INT DEFAULT 1,
+    O_Date   DATE DEFAULT GETDATE()
+);
