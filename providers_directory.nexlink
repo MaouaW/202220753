@@ -1,0 +1,15 @@
+# ═══════════════════════════════════════════════════════════════
+#  NEXLINK TEST: PROVIDERS DIRECTORY (Level 2)
+#  Demonstrates on-demand API loading.
+#  Each provider node uses an api:// link which delegates to a
+#  local handler script registered in extractors.json.
+# ═══════════════════════════════════════════════════════════════
+
+# Public providers (open community)
+OpenSource Hub[github://MaouaW/202220753/test_nexlink/opensource_hub.nexlink]
+
+# Private providers (API-gated, on-demand)
+# These require the user to have an API key handler script installed locally.
+# The browser will call: node tools/provider_handler.js provider-a.com/customers?key=USER_KEY
+Provider A[api://provider-a.com/customers?key=USER_KEY]
+Provider B[api://provider-b.com/members?token=USER_TOKEN]

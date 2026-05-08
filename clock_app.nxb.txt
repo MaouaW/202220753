@@ -1,0 +1,11 @@
+{
+  "name": "NexLink Clock",
+  "library_refs": ["TAILWIND_V4", "INTER_FONT", "NEXTGEN_GLASS"],
+  "manifest": {
+    "entry": "index.html"
+  },
+  "assets": {
+    "index.html": "<!DOCTYPE html><html lang='en'><head><title>Clock</title></head><body class='bg-slate-900 text-white flex items-center justify-center min-h-screen font-inter'><div class='glass p-12 text-center shadow-2xl rounded-2xl'><div id='time' class='text-6xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'>00:00:00</div><div id='date' class='mt-4 text-sm opacity-40'></div><div class='mt-6 flex gap-3 justify-center'><div class='glass px-4 py-2 rounded-xl text-xs'><span class='opacity-40'>Zone: </span><span id='tz' class='font-bold'></span></div></div></div><script src='app.js'></script></body></html>",
+    "app.js": "function tick(){const n=new Date();document.getElementById('time').textContent=n.toLocaleTimeString();document.getElementById('date').textContent=n.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});document.getElementById('tz').textContent=Intl.DateTimeFormat().resolvedOptions().timeZone}setInterval(tick,1000);tick();"
+  }
+}
