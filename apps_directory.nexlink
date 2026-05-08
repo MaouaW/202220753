@@ -5,6 +5,6 @@
 # ═══════════════════════════════════════════════════════════════
 
 # Each node can be a sub-category (folder) or a direct app (.nxb.txt)
-Calculator[github://MaouaW/202220753/test_nexlink/calculator_app.nxb.txt]
-Notepad[github://MaouaW/202220753/test_nexlink/notepad_app.nxb.txt]
-Utilities<Clock[github://MaouaW/202220753/test_nexlink/clock_app.nxb.txt]|Timer>
+Calculator[github://MaouaW/202220753/calculator_app.nxb.txt]
+Notepad[github://MaouaW/202220753/notepad_app.nxb.txt]
+Utilities<Clock[github://MaouaW/202220753/clock_app.nxb.txt]|Timer>

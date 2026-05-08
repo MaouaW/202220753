@@ -6,7 +6,7 @@
 # ═══════════════════════════════════════════════════════════════
 
 # Public providers (open community)
-OpenSource Hub[github://MaouaW/202220753/test_nexlink/opensource_hub.nexlink]
+OpenSource Hub[github://MaouaW/202220753/opensource_hub.nexlink]
 
 # Private providers (API-gated, on-demand)
 # These require the user to have an API key handler script installed locally.

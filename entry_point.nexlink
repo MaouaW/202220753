@@ -9,4 +9,4 @@
 # This is a community map. It links to sub-pages, apps, and provider APIs.
 # Users and providers can contribute by adding nodes to this file.
 
-NexLink Portal<Apps[github://MaouaW/202220753/test_nexlink/apps_directory.nexlink]|Providers[github://MaouaW/202220753/test_nexlink/providers_directory.nexlink]|About[github://MaouaW/202220753/test_nexlink/about_app.nxb.txt]>
+NexLink Portal<Apps[github://MaouaW/202220753/apps_directory.nexlink]|Providers[github://MaouaW/202220753/providers_directory.nexlink]|About[github://MaouaW/202220753/about_app.nxb.txt]>
