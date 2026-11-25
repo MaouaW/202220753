@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>متجر وأركيد الفضاء الحر — Wasat Space Store (GitHub Single-File App)</title>
+  <style>
+    body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: radial-gradient(circle at top, #0f1b3d, #050811); color: #f8fafc; padding: 24px; }
+    .hero { display: flex; justify-content: space-between; align-items: center; background: rgba(15,23,42,0.85); border: 1px solid #1e3a8a; border-radius: 14px; padding: 18px 22px; margin-bottom: 20px; }
+    .badge { background: rgba(56,189,248,0.18); color: #7dd3fc; border: 1px solid #38bdf8; border-radius: 999px; padding: 4px 12px; font-size: 12px; font-weight: 700; }
+    .layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; }
+    .card { background: rgba(17,25,44,0.9); border: 1px solid #1e293b; border-radius: 12px; padding: 16px; }
+    .store-list { display: grid; gap: 12px; margin-top: 12px; }
+    .item { display: flex; justify-content: space-between; align-items: center; background: #090e1a; padding: 12px; border-radius: 9px; border: 1px solid #1e293b; }
+    button { background: #10b981; color: #fff; border: none; padding: 8px 14px; border-radius: 7px; font-weight: 700; cursor: pointer; }
+    button:hover { opacity: 0.9; }
+    canvas { width: 100%; height: 240px; background: #03060d; border-radius: 10px; border: 1px solid #38bdf8; margin-top: 10px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div>
+      <h1 style="margin:0 0 6px;color:#38bdf8">🚀 متجر وأركيد الفضاء الحر (GitHub Single-File App)</h1>
+      <p style="margin:0;color:#94a3b8;font-size:13px">تطبيق وموقع كامل يعمل من ملف نصي واحد مستضاف مجاناً على GitHub عبر محرك وسط المفتوح!</p>
+    </div>
+    <span class="badge">مستضاف على GitHub • 0$ خوادم</span>
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <h3 style="margin-top:0;color:#fcd34d">🛒 أحدث إصدارات المطورين والوكلاء المستقلين</h3>
+      <div class="store-list" id="storeList"></div>
+      <div id="cartNotice" style="margin-top:12px;color:#6ee7b7;font-weight:700;min-height:22px"></div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 style="margin:0;color:#7dd3fc">🎮 لعبة مصغرة حية: اجمع النجوم (اضغط بالماوس)</h3>
+        <strong id="scoreLbl" style="color:#10b981">النقاط: 0</strong>
+      </div>
+      <canvas id="starCanvas" width="460" height="240"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { name: 'درع المجرة (Galaxy Shield)', tag: 'لعبة فضاء مستقلة', price: 'مجاني' },
+      { name: 'محرر الخرائط الذكي (MapForge AI)', tag: 'أداة مطورين', price: '$5' },
+      { name: 'حزمة واجهات نيون (.وسط)', tag: 'قالب واجهة عربية', price: 'مجاني' }
+    ];
+    const list = document.getElementById('storeList');
+    products.forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'item';
+      row.innerHTML = `<div><strong>${p.name}</strong><div style="font-size:11.5px;color:#94a3b8">${p.tag} • ${p.price}</div></div><button>تحميل / معاينة</button>`;
+      row.querySelector('button').onclick = () => {
+        document.getElementById('cartNotice').textContent = '✓ تم فتح حزمة: ' + p.name;
+      };
+      list.appendChild(row);
+    });
+
+    const cvs = document.getElementById('starCanvas');
+    const ctx = cvs.getContext('2d');
+    let score = 0, star = { x: 180, y: 110, r: 16 };
+    function draw() {
+      ctx.clearRect(0, 0, cvs.width, cvs.height);
+      ctx.fillStyle = '#fbbf24';
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px Segoe UI';
+      ctx.fillText('انقر على النجم الذهبي لجمع النقاط!', 140, 225);
+    }
+    cvs.addEventListener('mousedown', e => {
+      const rect = cvs.getBoundingClientRect();
+      const mx = (e.clientX - rect.left) * (cvs.width / rect.width);
+      const my = (e.clientY - rect.top) * (cvs.height / rect.height);
+      if (Math.hypot(mx - star.x, my - star.y) <= star.r + 10) {
+        score += 10;
+        document.getElementById('scoreLbl').textContent = 'النقاط: ' + score;
+        star.x = 30 + Math.random() * (cvs.width - 60);
+        star.y = 30 + Math.random() * (cvs.height - 70);
+        draw();
+      }
+    });
+    draw();
+  </script>
+</body>
+</html>
